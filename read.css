@@ -1,0 +1,79 @@
+body {
+    background-color: #333333;
+    color: #F8F7F1;
+    margin: 0;
+    padding: 0;
+    font-family: "Zen Maru Gothic", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+header {
+    display: flex;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    height: 110px;
+    background-color: #333333;
+}
+
+#icon {
+    position: fixed;
+    left: 30px;
+}
+
+#alert {
+    position: fixed;
+    right: 30px;
+}
+
+#logo {
+    position: fixed;
+    margin-top: 20px;
+}
+
+main {
+    margin: 130px auto;
+    text-align: center;
+}
+
+table {
+    margin: 0 auto; /* 左右のマージンを自動にして中央に配置 */
+    border-collapse: collapse; /* テーブルのボーダーをスッキリさせる */
+    text-align: left;
+}
+
+tr {
+    font-size: 12px;
+}
+
+th {
+    padding: 5px 10px;
+    background-color: #c74838;
+}
+
+td {
+    padding: 5px 10px;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    height: 80px;
+    width: 100%;
+    text-align: center;
+    justify-items: space-around;
+    background-color: #333333;
+}
+
+ul {
+    list-style: none;
+    padding-inline-start: 0;
+}
+
+li {
+    display: inline;
+    padding: 8px 20px;
+}
