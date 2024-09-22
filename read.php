@@ -32,6 +32,26 @@ while (!feof($file)){
 
 //csvファイルを閉じる
 fclose($file);
+
+// CSVファイルを開く
+$csvFile = 'data.csv';
+$handle = fopen($csvFile, 'r');
+
+// 公演ごとのカウントを保存する配列
+$performance_counts = [];
+
+// CSVファイルの内容を読み込んで、各公演ごとのカウントをする
+if ($handle !== FALSE) {
+    while (($data = fgetcsv($handle)) !== FALSE) {
+        $performance = $data[3]; // 公演名がCSVファイルの4列目
+        if (!isset($performance_counts[$performance])) {
+            $performance_counts[$performance] = 0;
+        }
+        $performance_counts[$performance]++;
+    }
+    fclose($handle);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -54,38 +74,52 @@ fclose($file);
 
     <main>
         <img src="./img/ReERA.png" height="100px">
-        <h3 style="margin: 0 0 30px 0;">全国ツアー チケット申込一覧</h3>
+
+        <h4 style="margin: 20px 0;">公演毎応募者数</h4>
+        <table align="center" class="entry">
+                <tr>
+                    <td align="right" class="item">千葉 2024.10.26（土）17:30</td>
+                    <td align="left">
+                        <?php echo isset($performance_counts['千葉 2024.10.26（土）17:30']) ? $performance_counts['千葉 2024.10.26（土）17:30'] : '0';?>人
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" class="item">千葉 2024.10.27（日）12:30</td>
+                    <td align="left">
+                        <?php echo isset($performance_counts['千葉 2024.10.27（日）12:30']) ? $performance_counts['千葉 2024.10.27（日）12:30'] : '0';?>人
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" class="item">千葉 2024.10.27（日）17:30</td>
+                    <td align="left">
+                    <?php echo isset($performance_counts['千葉 2024.10.27（日）17:30']) ? $performance_counts['千葉 2024.10.27（日）17:30'] : '0';?>人
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" class="item">愛知 2024.11.09（土）17:30</td>
+                    <td align="left">
+                        <?php echo isset($performance_counts['愛知 2024.11.09（土）17:30']) ? $performance_counts['愛知 2024.11.09（土）17:30'] : '0';?>人
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" class="item">愛知 2024.11.10（日）12:30</td>
+                    <td align="left">
+                        <?php echo isset($performance_counts['愛知 2024.11.10（日）12:30']) ? $performance_counts['愛知 2024.11.10（日）12:30'] : '0';?>人
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" class="item">愛知 2024.11.10（日）17:30</td>
+                    <td align="left">
+                        <?php echo isset($performance_counts['愛知 2024.11.10（日）17:30']) ? $performance_counts['愛知 2024.11.10（日）17:30'] : '0';?>人
+                    </td>
+                </tr>
+            </table>
+
+        <h4 style="margin: 40px 0 30px 0;">全国ツアー チケット申込一覧</h4>
         <table border="1">
             <?php echo $list ?>
         </table>
 
-        <h4 style="margin: 30px 0;">公演毎応募者数</h4>
-        <table align="center" class="contactform">
-                <tr>
-                    <td align="right" class="item">千葉 2024.10.26（土）17:30</td>
-                    <td align="left">人</td>
-                </tr>
-                <tr>
-                    <td align="right" class="item">千葉 2024.10.27（日）12:30</td>
-                    <td align="left">人</td>
-                </tr>
-                <tr>
-                    <td align="right" class="item">千葉 2024.10.27（日）17:30</td>
-                    <td align="left">人</td>
-                </tr>
-                <tr>
-                    <td align="right" class="item">愛知 2024.11.09（土）17:30</td>
-                    <td align="left">人</td>
-                </tr>
-                <tr>
-                    <td align="right" class="item">愛知 2024.11.10（日）12:30</td>
-                    <td align="left">人</td>
-                </tr>
-                <tr>
-                    <td align="right" class="item">愛知 2024.11.10（日）17:30</td>
-                    <td align="left">人</td>
-                </tr>
-            </table>
 
     </main>
 
